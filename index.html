@@ -1,0 +1,198 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Class 5</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+  <link href='https://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
+
+  <!-- bootswatch -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-kVo/Eh0sv7ZdiwZK32nRsp1FrDT3sLRLx3zVpSSTI9UdO5H02LJNLBg5F1gwvKg0" crossorigin="anonymous">
+
+<!--   <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style>
+    .jumbotron {
+      font-family:'Muli', sans-serif;
+    }
+    h4 {
+      font-family: 'Muli', sans-serif;
+    }
+    #map {
+      height: 500px;
+      color: black;
+      font-family: 'Muli', sans-serif;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">NYC Coffee</a>
+        </div>
+      
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="http://www.ncausa.org/About-Coffee/What-is-Coffee">About Coffee<span class="sr-only">(current)</span></a></li>
+            <li><a href="http://www.pbs.org/food/the-history-kitchen/history-coffee/">History of Coffee</a></li> 
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="jumbotron">
+      <h1>Welcome!</h1>
+      <p>Coffee Around New York City</p>
+      <p><a class="btn btn-info btn-lg" href="#" role="button"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span> Learn more</a></p>
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="col-md-4 red">
+        <h4>Coffee Shops of Interest</h4>
+        <div class="btn-group">
+              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Manhattan <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.thinkcoffee.com">Think</a></li>
+                <li><a href="http://www.twohandsnyc.com/">Two Hands</a></li>
+                <li><a href="http://www.thirdrailcoffee.com">Third Rail Coffee</a></li>
+                <li><a href="https://www.stumptowncoffee.com">Stumptown</a></li>
+                <li><a href="http://www.kopinyc.com">Kopi Kopi</a></li>
+                <li><a href="http://www.mudnyc.com/">Mudspot</a></li>
+              </ul>
+            </div>
+
+             <div class="btn-group">
+              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Brooklyn <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="http://sitandwonder.org">Sit and Wonder</a></li>
+                <li><a href="http://www.dailypresscoffee.com">Daily Press</a></li>
+                <li><a href="https://www.facebook.com/Postmark-Cafe-63303771194/">Postmark Cafe</a></li>
+                <li><a href="http://www.lazyibisnyc.com">Lazy Ibis</a></li>
+              </ul>
+            </div>
+
+             <div class="btn-group">
+              <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Queens <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="http://www.coffeednyc.com/lic-flagship/">COFFEED</a></li>
+              </ul>
+            </div>
+        </div>
+  </div>
+
+
+
+<div id="map"></div>
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  <script src ="https://code.jquery.com/jquery-2.2.1.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script>
+    
+    var map = L.map('map').setView([40.730982,-73.997340], 13);
+
+    var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{
+     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    });
+
+    map.addLayer(layer)
+
+    var mymappoints =[
+  {name: "<b>Think Coffee</b>",
+    coord:[40.728357,-73.995299],
+    add: " <br/> 248 Mercer  St",
+    deets: "<br/> Favorite place around NYU to do work, although it can get pretty crowded",
+  },
+  {name: "<b>Third Rail Coffee</b>",
+    coord:[40.729916,-73.999625],
+    add: "<br/> 240 Sullivan St",
+    deets: "<br/> A favorite for the NYU Furman Center",
+  },
+  {name: "<b>Stumptown</b>",
+    coord:[40.732789,-73.997981],
+    add: "<br/> 30 West 8th St",
+    deets: "<br/> You usually can't find a spot to sit",
+  },
+  {name: "<b>Kopi Kopi</b>",
+    coord: [40.729377,-73.998261],
+    add: "<br/> 68 West 3rd St",
+    deets: "<br/> I actually wouldn't recommend this place. I saw the largest cockroach ever crawling on the wall once",
+  },
+  {name: "<b>Two Hands</b>",
+    coord: [40.719686,-73.996032],
+    add: "<br/> 164 Mott St",
+    deets: "<br/> Probably worth going here just for the Tim Tam Slam",
+  },
+  {name: "<b>Mudspot</b>",
+    coord: [40.729061,-73.986681],
+    add: "<br/> 307 East 9th St",
+    deets: "<br/> Can't go wrong with their regular MUD coffee",
+  },
+  {name: "<b>Sit and Wonder</b>",
+    coord:[40.677351,-73.963946],
+    add: "<br/> 688 Washington Ave",
+    deets: "<br/> Cute little coffee shop with a cozy back yard that is great during the summer",
+  },
+  {name: "<b>Daily Press</b>",
+    coord: [40.681482,-73.955593],
+    add: "<br/> 505 Franklin Ave",
+    deets: "<br/> Conveniently located next to the subway stop",
+  },
+  {name: "<b>Postmark Cafe</b>",
+    coord:[40.671112,-73.985324],
+    add: "<br/> 326 6th St",
+    deets: "<br/> Cozy and warm cafe. As one yelp reviewer commented that there is no elite hipster douchbaggery at this cafe",
+  },
+  {name: "<b>Lazy Ibis</b>",
+    coord:[40.675748,-73.956002],
+    add: "<br/> 663 Franklin Ave",
+    deets: "<br/> My roommate loves their coffee",
+  },
+  {name: "<b>COFFEED</b>",
+    coord:[40.751931,-73.925619],
+    add: "<br/> 37-18 Northern Blvd",
+    deets: "<br/> Not sure if this is good or not. I just wanted to include a place in Queens",
+  }
+  ]
+
+
+mymappoints.forEach(function(element){
+  var marker = L.marker(element.coord).addTo(map);
+   marker.bindPopup(element.name + element.add + element.deets)
+});
+
+
+  
+
+
+  </script>
+  <!-- <script src="js/scripts.js"></script> -->
+</body>
+</html>
